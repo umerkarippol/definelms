@@ -16,56 +16,6 @@ from django.contrib import messages
 
 #######login############################
 
-# def admin_login(request):
-#     forms = loginform()
-#     if request.method == 'POST':
-#         forms = loginform(request.POST)
-#         if forms.is_valid():
-#             username = forms.cleaned_data['username']
-#             password = forms.cleaned_data['password']
-#             user = authenticate(username=username, password=password)
-#             if user:
-#                 login.objects.values(request, user)
-#                 return redirect('home')
-#     context = {'forms': forms}
-#     return render(request, 'administration/login.html', context)
-
-
-
-
-# def admin_login(request):
-#     forms = loginform()
-#     un=login.objects.filter(role=0).values()
-#     print('----------------',un)
-#     for l in un:
-#         # print('**************************',v)
-#         u=l.get('username')
-#         p=l.get('password')
-#     if request.method == 'POST':
-#         forms = loginform(request.POST)
-#         if forms.is_valid():
-#             username = request.POST['username']
-#             password = request.POST['password']
-#             if username == u and password == p:
-#                 total_course = course.objects.count()
-#                 context={
-#                     'course': total_course,
-#                 }
-#                 return render(request, 'home.html', context)
-#             else:
-#                 context = {'forms': forms}
-#                 return render(request, 'administration/login.html', context)
-#     context = {'forms': forms}
-#     return render(request, 'administration/login.html', context)
-
-#   <li class="nav-item">
-#                 <a class="nav-link" href="{% url 'home' %}"><i class="icon-speedometer"></i> Dashboard</a>
-#             </li>
-           
-
-
-
-
 def admin_login(request):
 
    
@@ -85,7 +35,7 @@ def admin_login(request):
 			print(request.session['username'])
             
 			return redirect('home')
-            # return redirect(request,'home.html',context1)
+            
 
 		else:
 			msg='Invalid!!'
@@ -95,26 +45,6 @@ def admin_login(request):
 
 
 
-
-# def admin_login(request):
-# 	msg=''
-# 	if request.method=='POST':
-# 		username=request.POST['username']
-# 		password=request.POST['password']
-# 		userlogin=login.objects.filter(username=username,password=password,role=0).count()
-# 		if userlogin > 0:
-# 			userlogin=login.objects.filter(username=username,password=password,role=0).first()
-# 			request.session['username']=userlogin.username
-# 			return redirect('home')
-# 		else:
-# 			msg='Invalid!!'
-            
-# 	form=loginform
-# 	return render(request, 'administration/login.html',{'forms':form,'msg':msg})
- 
-# def admin_logout(request):
-#     logout(request)
-#     return redirect('login')
 
 
 
@@ -269,10 +199,9 @@ def add_course(request):
         return redirect('login')
     else:
             if request.method == 'POST':
-                # y =(0,1,{request.session['username']})
+                
                 form = courseform1(request.POST, request.FILES)
-                # un=login.objects.filter(role=0).values()
-                # print('----------------',un)
+               
                
                 if form.is_valid():
                     form.save()
@@ -287,41 +216,7 @@ def add_course(request):
             return render(request, 'course/course.html', context)
 
 
-
-
-# def home_course(request):
-#     form = courseform1()
-#     exm = course.objects.all()
-#     context = {'form':form, 'exm':exm}
-#     return render(request, 'course/course.html', context)
-
-
-# @csrf_exempt
-# def save_data_course(request):
-#     if request.method == 'POST':
-#         form = courseform1(request.POST)
-#         if form.is_valid():
-#             eid = request.POST.get('exmid')
-#             course_name = request.POST['course_name']
-#             description = request.POST['description']
-#             amount = request.POST['amount']
-#             duration = request.POST.POST('duration')
-#             exam = request.POST['exam']
-#             image = request.POST['image']
-#             user = request.POST['user']
-#             print('student id',eid)
-
-#             if(eid == ''):
-#                 s = course(course_name=course_name, description=description, amount=amount,duration=duration,exam=exam,image=image,user=user)
-#             else:
-#                 s = course(id=eid, course_name=course_name, description=description, amount=amount,duration=duration,exam=exam,image=image,user=user)
-#             s.save()
-
-#             exm = course.objects.values()
-#             student_data = list(exm)
-#             return JsonResponse({'status':'Data Saved', 'student_data':student_data})
-#         else:
-#             return JsonResponse({'status':'Not Saved'})    
+ 
 
 @csrf_exempt
 def delete_data_course(request):
@@ -334,14 +229,6 @@ def delete_data_course(request):
         return JsonResponse({'status':0})    
 
 
-# @csrf_exempt
-# def edit_data_course(request):
-#     if request.method == 'POST':
-#         id = request.POST.get('eid')
-#         print('Student ID',id)
-#         student = course.objects.get(pk=id)
-#         student_data = {'id':student.id, 'course_name':student.course_name, 'amount':student.amount, 'duration':student.duration,'exam':student.exam, 'image':student.image, 'user':student.user}
-#         return JsonResponse(student_data)
 
 
 ########################## add subject ########################
