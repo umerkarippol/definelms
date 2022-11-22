@@ -7,7 +7,6 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from collections import namedtuple
-from PIL import Image
 from rest_framework.parsers import MultiPartParser, FormParser
 from .forms import *
 
