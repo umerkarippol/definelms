@@ -1,14 +1,17 @@
 from copy import Error
-from django.shortcuts import render
-from django.http import HttpResponse, response
+from multiprocessing import context
+from django.shortcuts import render,redirect
+from django.http import HttpResponse, response,JsonResponse
 from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from collections import namedtuple
+from PIL import Image
 from rest_framework.parsers import MultiPartParser, FormParser
 from .forms import *
+from django.views.decorators.csrf import csrf_exempt
 
 
 class WebLogin(APIView):
@@ -75,7 +78,7 @@ class registrationView(APIView):
         return Response(serializer.data)
 
     def post(self,req):
-        Login={'username':req.data['mobile'],'password':req.data['mobile'],'role':2}
+        Login={'username':req.data['mobile'],'password':req.data['mobile'],'role':0}
         serializer = registrationSerializer(data=req.data)
         logserial=loginSerializer(data=Login)
         if serializer.is_valid():
@@ -148,13 +151,29 @@ class examView(APIView):
 def addcourse(request):
         """Process images uploaded by users"""
         if request.method == 'POST':
-            form = courseForm(request.POST, request.FILES)
+            form = courseform1(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
                 return render(request, 'course.html', {'form': form})
+                
         else:
-            form = courseForm()
+            form = courseform1()
         return render(request, 'course.html', {'form': form})
+
+# def add_course(request):
+#         if request.method == 'POST':
+#             form = courseform1(request.POST, request.FILES)
+#             if form.is_valid():
+#                 form.save()
+#                 designation = course.objects.all()
+#                 context = {'form': form, 'st': designation}
+#                 return render(request, 'course/course.html',context)
+                
+#         else:
+#             form = courseform1()
+#         designation = course.objects.all()
+#         context = {'form': form, 'st': designation}
+#         return render(request, 'course/course.html', context)
 
 class courseView(APIView):
 
@@ -522,3 +541,50 @@ class GetQuestions(APIView):
         data = exam_question_allocation.objects.filter(exam_master = id)
         serializer = examdetailsSerializer(data, many=True)
         return Response(serializer.data)
+
+
+
+
+from django.contrib.auth.decorators import login_required
+
+# # @login_required(login_url='login')
+# def home_page(request):
+#     total_course   = course.objects.count()
+#     total_subject  = subject.objects.count()
+#     total_exam     = exam.objects.count()
+#     total_question = question_bank.objects.count()
+#     context={
+#         'course'  :total_course,
+#         'subject' :total_subject,
+#         'exam'    :total_exam,
+#         'question':total_question
+#     }
+#     return render(request, 'home.html',context)
+
+# def add_designation(request):
+#     forms = AddDesignationForm()
+#     if request.method == 'POST':
+#         forms = AddDesignationForm(request.POST)
+#         if forms.is_valid():
+#             forms.save()
+#             return redirect('designation')
+#     designation = Designation.objects.all()
+#     context = {'forms': forms, 'designation': designation}
+#     return render(request, 'administration/designation.html', context)
+
+
+
+
+###############################################
+#     forms = Addexam()
+#     if request.method == 'POST':
+#         forms = Addexam(request.POST)
+#         if forms.is_valid():
+#             forms.save()
+#             return redirect('add-exam')
+#     exam1 = exam.objects.all()
+#     context = {'form': forms, 'exam': exam1}
+#     return render(request, 'exam/exam.html', context)
+
+
+

@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Designation Register Form</div>
+    <div class="card-body">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="dsnid" id="dsnid" />
+        {{ form.as_p}}
+
+        <input type="button" class="btn btn-success" value="Save" id="btnsave">
+
+</form>
+    </div>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Designation List</div>
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Designation</th>
+                  <th scope="col">Action</th>
+              </tr>
+          </thead>
+          <tbody id="tbody">
+              {% for st in dsn %}
+              <tr>
+                  <td>{{st.id}}</td>
+                  <td>{{st.designation}}</td>
+                  <td>
+                      <input type="button" value="Edit" class="btn btn-warning btn-sm btn-edit" data-sid="{{st.id}}">
+                      <input type="button" value="Delete" class="btn btn-danger btn-sm btn-del"  data-sid="{{st.id}}" onClick="deleteUser(id)">
+
+                  </td>
+
+              </tr>
+
+
+              {% endfor %}
+          </tbody>
+
+      </table>
+      </div>
+  </div>
+  <script src="{% static 'core/js/jquery.js' %}"></script>
+  <script src="{% static 'core/js/popper.js' %}"></script>
+{% include 'core/ajax.html' %}   
+{% endblock %}]

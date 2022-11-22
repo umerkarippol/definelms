@@ -5,8 +5,8 @@ from lmsmainapp import views
 
 urlpatterns = [
 
-    path('login/', api_views.loginView.as_view(), name="login"),
-    path('login/<id>', api_views.topicView.as_view(), name="login_put_dlt"),
+    path('login1/', api_views.loginView.as_view(), name="login1"),
+    path('login1/<id>', api_views.topicView.as_view(), name="login_put_dlt"),
 
     path('registration/', api_views.registrationView.as_view(), name="registration"),
     path('registration/<id>', api_views.registrationView.as_view(), name="registration_put_dlt"),
@@ -47,4 +47,15 @@ urlpatterns = [
     
     path('mcq/', api_views.mcqView.as_view(), name="subtopic"),
     path('mcq/<id>', api_views.GetQuestions.as_view(), name="subtopic"),
+
+
+  
+    
+    # path('home/', views.home_page,name="home"),
+
+   
+    ######course#############
+
+   
+    
 ]

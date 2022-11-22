@@ -1,0 +1,165 @@
+{% load static %}
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            
+            <li class="nav-item">
+                                 <a class="nav-link" href="{% url 'home' %}"><i class="icon-speedometer"></i> Dashboard</a>
+                            </li>
+          
+            <!-- Administration Section Start -->
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Administration</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                       <a class="nav-link" href="{% url 'administration' %}">
+                           <i class="fa fa-plus-circle"></i>Add Designation</a>
+                    </li>
+                </ul>
+              </li>
+           <!-- Administration Section END -->
+
+           <!-- Academic Section START -->
+          
+          <!-- Academic Section END -->
+
+           <!-- Teacher Section START -->
+           <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Course</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cr' %}">
+                        <i class="fa fa-plus-circle"></i>Add Course</a>
+                 </li> 
+            </ul>
+          </li>
+          <!-- Teacher Section END -->
+
+            <!-- Class Section START -->
+            <li class="nav-item nav-dropdown">
+             <a class="nav-link nav-dropdown-toggle" href="#">
+                 <i class="nav-icon icon-puzzle"></i>subject</a>
+             <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sub' %}">
+                        <i class="fa fa-plus-circle"></i>Add subject</a>
+                 </li> 
+             </ul>
+           </li>
+           <!-- Class Section END -->
+
+            <!-- Student Section START -->
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Topic</a>
+                <ul class="nav-dropdown-items">
+                   <li class="nav-item">
+                       <a class="nav-link" href="{% url 'topicc' %}">
+                           <i class="fa fa-plus-circle"></i>Add Topic</a>
+                    </li>  
+                </ul>
+              </li>
+           <!-- Student Section END -->
+
+           <!-- Enroll Student Section START -->
+        <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Subtopic</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'topicsub' %}">
+                        <i class="fa fa-plus-circle"></i>Add SubTopic</a>
+                 </li>  
+            </ul>
+          </li>
+          <!-- Enroll Student Section END -->
+
+
+
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Exam</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-examex' %}">
+                        <i class="fa fa-plus-circle"></i>Add exam</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'homeem' %}">
+                        <i class="fa fa-plus-circle"></i> ExamMaster</a>
+                 </li>
+            </ul>
+          </li>
+
+           <!-- Employee Section START -->
+           <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Questionbank</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'qbadd' %}">
+                        <i class="fa fa-plus-circle"></i>Add question</a>
+                 </li>  
+                 <li class="nav-item">
+                    <a class="nav-link" href="{% url 'op' %}">
+                        <i class="fa fa-plus-circle"></i> Add options</a>
+                 </li>
+            </ul>
+          </li>
+          <!-- Employee Section END -->
+
+          <!-- Result Section START -->
+          <li class="nav-item nav-dropdown">
+           <a class="nav-link nav-dropdown-toggle" href="#">
+               <i class="nav-icon icon-puzzle"></i>Result</a>
+           <ul class="nav-dropdown-items">
+               
+           </ul>
+         </li>
+         <!-- Result Section END -->
+
+         <!-- Attendence Report Section START -->
+         <li class="nav-item nav-dropdown">
+          <a class="nav-link nav-dropdown-toggle" href="#">
+              <i class="nav-icon icon-puzzle"></i>Attendence Report</a>
+          <ul class="nav-dropdown-items">
+              
+          </ul>
+        </li>
+        <!-- Attendence Report Section END -->
+
+       <!-- Holiday Section START -->
+       <li class="nav-item nav-dropdown">
+        <a class="nav-link nav-dropdown-toggle" href="#">
+            <i class="nav-icon icon-puzzle"></i>Holiday</a>
+        <ul class="nav-dropdown-items">
+            
+        </ul>
+      </li>
+      <!-- Holiday Section END -->
+
+        <!-- Event Section START -->
+        <li class="nav-item nav-dropdown">
+         <a class="nav-link nav-dropdown-toggle" href="#">
+             <i class="nav-icon icon-puzzle"></i>Event</a>
+         <ul class="nav-dropdown-items">
+             
+         </ul>
+       </li>
+       <!-- Event Section END -->
+
+        <!-- User-Manual Section START -->
+        <li class="nav-item nav-dropdown">
+         <a class="nav-link" href="#">
+             <i class="nav-icon icon-puzzle"></i>User-Manual</a>
+       </li>
+       <!-- User-Manual Section END -->
+        </ul>
+    </nav>
+    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+
+    {% block sidebar %}
+    {% endblock %}
+</div>

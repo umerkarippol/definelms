@@ -1,0 +1,86 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card">
+  <div class="card-header">question Register Form</div>
+  <div class="card-body">
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+     {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Upload</button>
+  </form>
+</div>
+</div>
+<div class="card">
+  <div class="card-header">
+      <i class="fa fa-align-justify"></i>question List</div>
+  <div class="card-body">
+    <div  style="overflow-x:auto;">
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">question</th>
+        <th scope="col">subject</th>
+        <th scope="col">topic</th>
+        <th scope="col">subtopic</th>
+        <th scope="col">no_of_options</th>
+        <th scope="col">tags</th>
+        <th scope="col">is_explanation</th>
+        <th scope="col">is_image</th>
+        <th scope="col">explanation</th>
+        <th scope="col">difficulty_level</th>
+        <th scope="col">created_date</th>
+        <th scope="col">last_updated_date</th>
+        <th scope="col">user</th>
+        <th scope="col">status</th>
+        <th scope="col">remark</th>
+        <th scope="col">is_reported</th>
+        <th scope="col">report_reason</th>
+        <th scope="col">correct_answer</th>
+        <th scope="col">option</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+      {% for st in st %}
+      <tr>
+          <td>{{st.id}}</td>
+          <td>{{st.question}}</td>
+          <td>{{st.subject}}</td>
+          <td>{{st.topic}}</td>
+          <td>{{st.subtopic}}</td>
+          <td>{{st.no_of_options}}</td>
+          <td>{{st.tags}}</td>
+          <td>{{st.is_explanation}}</td>
+          <td>{{st.is_image}}</td>
+          <td>{{st.explanation}}</td>
+          <td>{{st.difficulty_level}}</td>
+          <td>{{st.created_date}}</td>
+          <td>{{st.last_updated_date}}</td>
+          <td>{{st.user}}</td>
+          <td>{{st.status}}</td>
+          <td>{{st.remark}}</td>
+          <td>{{st.is_reported}}</td>
+          <td>{{st.report_reason}}</td>
+          <td>{{st.correct_answer}}</td>
+          <td>{{st.option}}</td>
+          <td>
+              <input type="button" value="Delete" onliClick="deletecr()" class="btn btn-danger btn-sm btn-del" data-eid="{{st.id}}">
+
+          </td>
+
+      </tr>
+
+
+      {% endfor %}
+    </tbody>
+
+</table>
+            </div>
+            </div>
+          </div>
+<script src="{% static 'core/js/jquery.js' %}"></script>
+<script src="{% static 'core/js/popper.js' %}"></script>
+  {% include 'questionbank/ajax.html' %}
+  {%endblock%}]

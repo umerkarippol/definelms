@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">exam Register Form</div>
+    <div class="card-body">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="exmid" id="exmid" />
+        {{ form.as_p}}
+
+        <input type="button" class="btn btn-success" value="Submit" id="btnsave">
+
+</form>
+    </div>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>exam List</div>
+      <div class="card-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">EXAM Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Remarks</th>
+              <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody id="tbody">
+            {% for st in exm %}
+            <tr>
+                <td>{{st.id}}</td>
+                <td>{{st.exam_name}}</td>
+                <td>{{st.description}}</td>
+                <td>{{st.remarks}}</td>
+                <td>
+                    <input type="button" value="Edit" class="btn btn-warning btn-sm btn-edit" data-eid="{{st.id}}">
+                    <input type="button" value="Delete" onliClick="deleteex()" class="btn btn-danger btn-sm btn-del" data-eid="{{st.id}}">
+
+                </td>
+
+            </tr>
+
+
+            {% endfor %}
+          </tbody>
+
+      </table>
+      </div>
+  </div>
+  <script src="{% static 'core/js/jquery.js' %}"></script>
+  <script src="{% static 'core/js/popper.js' %}"></script>
+  {% include 'exam/ajax.html' %}
+{%endblock%}]

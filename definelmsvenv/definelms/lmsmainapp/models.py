@@ -158,7 +158,7 @@ class payment(models.Model):
 
 class question_bank(models.Model):
     id              = models.AutoField(primary_key=True)
-    question        = models.CharField(max_length=5000,default="default",null=False)
+    question        = models.CharField(max_length=5000,default="",null=False)
     subject         = models.ForeignKey(subject,on_delete=models.CASCADE)
     topic           = models.ForeignKey(topic,on_delete=models.CASCADE)
     subtopic        = models.ForeignKey(Subtopics, on_delete=models.CASCADE)
@@ -240,3 +240,6 @@ class question_reporting(models.Model):
 
     class Meta:
         db_table = 'question_reporting'
+
+
+

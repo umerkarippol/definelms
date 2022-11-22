@@ -1,0 +1,117 @@
+<script>
+// Save data
+$('#btnsave').click(function(){
+    //console.log("Button Save Clicked");
+    output ="";
+    let did = $('#dsnid').val();
+    let n = $('#desigantionid').val();
+
+    console.log(did);
+
+    if(n == ""){
+        console.log("Please Enter Designation");
+    }else{
+        //console.log(n);
+        //console.log(e);
+        //console.log(c);
+
+        mydata = {dsnid:did, designation:n};
+
+        $.ajax({
+            url: "{% url 'save' %}",
+            method: "POST",
+            data: mydata,
+
+            success:function(data){
+             // console.log(data.status)
+             x = data.student_data;
+
+             if(data.status == 'Data Saved'){
+                 console.log('Data Submitted');
+
+                 for(i=0; i<x.length; i++){
+                     output += "<tr><td>" + x[i].id +
+                        "</td><td>" + x[i].designation +
+                        "</td><td> <input type='button' class='btn btn-warning btn-sm btn-edit' value='Edit' data-sid="+x[i].id + "> <input type='button' class='btn btn-danger btn-sm btn-del' value='Delete' data-sid="+ x[i].id + " />"
+                 }
+                 $('#tbody').html(output);
+                 $('#dsnid').val("");
+                 $('form')[0].reset();
+             }
+
+             if(data.status == 'Not Saved'){
+                 console.log('Unable Submit Data');
+                 $('#dsnid').val("");
+             }
+
+
+
+            }
+        });
+}
+
+})
+
+// Delete
+$('#tbody').on("click", ".btn-del", function deleteUser(id) {
+  var action = confirm("Are you sure you want to delete this user?");
+  if (action != false) {
+    console.log("Delete Button Cliked");
+    let id = $(this).attr("data-sid");
+
+    mydata = {did:id};
+    mythis = this;
+
+    $.ajax({
+        url: "{% url 'delete' %}",
+        method:"POST",
+        data:mydata,
+
+        success: function(data){
+            console.log(data);
+
+            if(data.status == 1){
+                console.log("Data Deleted");
+                $(mythis).closest("tr").fadeOut();
+            }
+
+            if(data.status == 0){
+                console.log("Unable To Deleted Data");
+                $(mythis).closest("tr").fadeOut();
+            }
+
+        },
+    })}
+})
+
+
+
+
+
+// Edit
+$('#tbody').on("click", ".btn-edit", function(){
+    console.log("Edit Button Cliked");
+    let id = $(this).attr("data-sid");
+
+    console.log(id);
+
+    mydata = {did:id}
+
+    $.ajax({
+        url: "{% url 'edit' %}",
+        method:"POST",
+        data:mydata,
+
+        success: function(data){
+            console.log(data);
+            $("#dsnid").val(data.id);
+            $("#desigantionid").val(data.designation);
+            console.log(data.id);
+
+
+        },
+    })
+})
+
+
+</script>

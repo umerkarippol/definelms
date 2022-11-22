@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card">
+  <div class="card-header">Exammaster Register Form</div>
+  <div class="card-body">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+     {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Upload</button>
+  </form>
+</div>
+</div>
+<div class="card">
+  <div class="card-header">
+      <i class="fa fa-align-justify"></i>Exammaster List</div>
+  <div class="card-body">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Exam</th>
+        <th scope="col">Course</th>
+        <th scope="col">No Of Questions</th>
+        <th scope="col">Total Time</th>
+        <th scope="col">No Of Attempt</th>
+        <th scope="col">Date</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Exam Description</th>
+        <th scope="col">Is Draft</th>
+        <th scope="col">User</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+      {% for st in st %}
+      <tr>
+          <td>{{st.id}}</td>
+          <td>{{st.name}}</td>
+          <td>{{st.exam}}</td>
+          <td>{{st.course}}</td>
+          <td>{{st.no_of_questions}}</td>
+          <td>{{st.total_time}}</td>
+          <td>{{st.no_of_attempt}}</td>
+          <td>{{st.datetime}}</td>
+          <td>{{st.exam_start_date}}</td>
+          <td>{{st.exam_end_date}}</td>
+          <td>{{st.exam_description}}</td>
+          <td>{{st.is_draft}}</td>
+          <td>{{st.user}}</td>
+          <td>
+              <input type="button" value="Delete" onliClick="deletesu()" class="btn btn-danger btn-sm btn-del" data-sid="{{st.id}}">
+          </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+<script src="{% static 'core/js/jquery.js' %}"></script>
+  <script src="{% static 'core/js/popper.js' %}"></script>
+{% include 'exam_master/ajax.html' %}   
+{%endblock%}
